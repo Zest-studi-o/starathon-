@@ -64,7 +64,7 @@ Project goals:
 
 #### First-Time Visitor Goals
 
-- As a first-time visitor, I want to take part in a Star Wars quiz so that I can test my knowledge about the StarWars franchise.
+- As a first-time visitor, I want to take part in a Star Wars quiz so that I can test my knowledge about the Star Wars franchise.
 - As a first-time visitor, I want to play the quiz on different devices so that I can use all my devices at my convenience.
 - As a first-time visitor, I want to navigate easily the site so that I can understand quickly the game mechanics.
 
