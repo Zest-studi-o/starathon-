@@ -30,22 +30,17 @@ User stories were created to aid developing a test plan, the test plan includes 
 
 ### WAVE
 Each page was run through the Web Accessibility Evaluation Tool (WAVE).<br>
+Different shades of yellow where used until the colour contrast passed the validator, a grey box background was added so it could be better visible<br>
 ![wave](docs/testing/wave.png)
 
 ### JavaScript Validator 
-
 [jshint](https://jshint.com/) was used to validate the JavaScript.
 
 
 ### Lighthouse
 
 We used Lighthouse within the Chrome Developer Tools to test the performance, accessibility, best practices and SEO of the website.
-
-#### Desktop Results
-
-
-#### Mobile Results
-
+![lighthouse](docs/testing/home-lighthouse.png)
 
 ---
 
@@ -60,12 +55,12 @@ We used Lighthouse within the Chrome Developer Tools to test the performance, ac
 | :--- | :--- |
 | As a first-time visitor, I want to take part in a Star Wars quiz so I can test my knowledge about Star Wars. | The quiz questions offer a varied range of questions divided in different levels of difficulty|
 | As a first-time visitor, I want to play the quiz in different devices so that I can use all my devices at my convenience. | The game is fully responsive and can be played in any screen size |
-| As a first-time visitor, I want to navigate easily the site so that I can understand quickly the game mechanics. | The game is easy to understand and further instructions are provided in how to play |
+| As a first-time visitor, I want to navigate easily the site so that I can understand quickly the game mechanics. | The game is easy to understand and further instructions are provided in the welcome page |
 
 `Returning Visitors`
 | Goals | How are they achieved? |
 | :--- | :--- |
-| As a returning visitor, I want to select the level of difficulty so that I can play in different modes and test further my knowledge | There is a feature which enables the user to select this once hitting play |
+| As a returning visitor, I want to select the level of difficulty so that I can play in different modes and test further my knowledge | There is a feature which enables the user to select this in the home page |
 
 `Frequent Visitors`
 | Goals | How are they achieved? |
@@ -99,25 +94,26 @@ Each device tested the site using the following browsers:
 | Feature | Expected Result | Testing Performed | Actual Result | Pass/Fail |
 | --- | --- | --- | --- | --- |
 | How to play modal | The modal open and closes correctly| Click on how to play, click on close | The content is shown and hidden as expected | Pass |
-| Play | The play button directs the user to the game select page | Click on the play button | The game select page loads | Pass |
+| Play | The play button directs the user to the game select page | Click on any difficulty level | The questions load correctly | Pass |
 
 `Game select page`
 | Feature | Expected Result | Testing Performed | Actual Result | Pass/Fail |
 | --- | --- | --- | --- | --- |
-| Easy Quiz | The easy button directs the user to the easy quiz, questions from this category, easy are loaded from the API | Click on the easy button | The easy quiz page loads pulling easy questions from the API | Pass |
-| Medium Quiz | The medium button directs the user to the easy quiz, questions from this category, medium are loaded from the API | Click on the medium button | The medium quiz page loads pulling medium questions from the API | Pass |
-| Hard Quiz | The hard button directs the user to the hard quiz, questions from the category, hard are loaded correctly | Click on the hard button | The hard quiz page loads correctly | Pass |
+| Youngling -Easy Quiz | The easy button directs the user to the easy quiz, questions from this category, easy are loaded | Click on the easy button | The easy quiz page loads pulling easy questions | Pass |
+| Padawan - Medium Quiz | The medium button directs the user to the easy quiz, questions from this category, medium are loaded | Click on the medium button | The medium quiz page loads pulling medium questions | Pass |
+| Grand Master - Hard Quiz | The hard button directs the user to the hard quiz, questions from the category, hard are loaded correctly | Click on the hard button | The hard quiz page loads correctly | Pass |
 
 `Game pages`
 | Feature | Expected Result | Testing Performed | Actual Result | Pass/Fail |
 | --- | --- | --- | --- | --- |
 | Stopwatch | A stopwatch shows while the questions are being populated | Click on any question | The stopwatch shows while answering the questions | Pass |
-| Colour user feedback | The selected question takes the colour green if it is correct or red if it is incorrect | Play any game | The questions colours display correctly | Pass |
+| Next Question button |Next question button is working when clicking on it and goes to the next one| Click on any question, answer it| The questions are moving to the next one | Pass |
+| Start sound\stop |A button should allow to turn on and off the audio | Click on turn on or off the audio button | The button should allow the user to have any of those choices| Pass |
 
 `End page`
 | Feature | Expected Result | Testing Performed | Actual Result | Pass/Fail |
 | --- | --- | --- | --- | --- |
-| Game score | The score obtained in the game displays on top | Play any game and reach the end page | The correct score displays | Pass |
+| Back home | The back home button redirect to the main page| Play any game and reach the end page | The correct page is loaded when the go back button is clicked | Fail |
 
 
 `404 page`
@@ -129,15 +125,6 @@ Each device tested the site using the following browsers:
 ---
 
 ## BUG TRACKER
-
-### Solved Bugs
-
-| ID  | CLASS | FEATURE          | DESCRIPTION                                                                          | STEPS TO REPRODUCE                                                                                                                                                           | ACTUAL RESULT                                                                                                                                  | EXPECTED RESULT                                                            | ACTION                                                                                                        | STATUS |
-| --- | ----- | ---------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ------ |
-| 1   | A     | abc          | abc            | Steps                                                               | abc      | abc                        | Solution: abc                                                         |  FIXED or NOT FIXED |
-
-### Known Bugs
-
-Add here known bugs if any.
+The bugs are getting tracked on Github pages and assigned to the developer(s) in charge of fixing them
 
 ---

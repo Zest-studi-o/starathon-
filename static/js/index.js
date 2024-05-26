@@ -17,6 +17,10 @@ let answersCorrect = 0;
 let timer;
 const TIMER_DURATION = 10;
 
+// Get the modal
+let modal = document.getElementById('answerModal');
+let modalMessage = document.getElementById('modal-message');
+
 // Declare the shuffled game data iterator
 let shuffledGameDataIterator;
 
@@ -78,6 +82,9 @@ function triviaGameEasy() {
     audio = new Audio('./static/sounds/the-mandalorian.mp3');
     audio.play();
 
+    // Disable the startGameEasy button
+    startGameEasy.disabled = true;
+
     setTimeout(function() {
         // Fetch the game data
         fetch('./static/js/game_data/game_data_easy.json')
@@ -100,15 +107,83 @@ function triviaGameEasy() {
             // Display the first question
             displayNextQuestion();
 
+            // Get the sound-control element
+            let soundControl = document.getElementById('sound-control');
+
+            // Insert HTML into the sound-control element
+            soundControl.innerHTML = `
+                <i class="fa-solid fa-volume-high icon-white sound-on"></i>
+                <i class="fa-solid fa-volume-xmark icon-white sound-off"></i>
+            `;
+
             // Create a new Audio object
             themeAudio = new Audio('./static/sounds/cantina-band.mp3');
-            themeAudio.play();
-            
+
+            // Store the interval ID
+            let intervalId;
+
             // Play the audio every 26 seconds
-            setInterval(function() {
+            intervalId = setInterval(function() {
                 themeAudio.currentTime = 0;
                 themeAudio.play();
             }, 26000); // 26000 milliseconds = 26 seconds
+
+            // Get the sound-off and sound-on buttons
+            let soundOffButton = document.querySelector('.sound-off');
+            let soundOnButton = document.querySelector('.sound-on');
+
+            // Hide the sound-off element initially
+            soundOffButton.style.display = 'none';
+
+            // Add event listener for the play event
+            themeAudio.addEventListener('play', function() {
+                // Hide the sound-on element and show the sound-off element
+                soundOnButton.style.display = 'none';
+                soundOffButton.style.display = 'block';
+            });
+
+            // Add event listener for the pause event
+            themeAudio.addEventListener('pause', function() {
+                // Hide the sound-off element and show the sound-on element
+                soundOffButton.style.display = 'none';
+                soundOnButton.style.display = 'block';
+            });
+
+            // Play the audio
+            themeAudio.play();
+
+            // Add event listener to the sound-off button
+            soundOffButton.addEventListener('click', function() {
+                // Pause the audio and clear the interval
+                themeAudio.pause();
+
+                //TESTING
+                soundOffButton.style.display = 'none';
+                soundOnButton.style.display = 'block';
+
+                clearInterval(intervalId);
+            });
+
+            // Add event listener to the sound-on button
+            soundOnButton.addEventListener('click', function() {
+                // Play the audio and set the interval
+                themeAudio.play();
+
+
+                //TESTING
+
+                soundOnButton.style.display = 'none';
+                soundOffButton.style.display = 'block';
+
+                intervalId = setInterval(function() {
+                    themeAudio.currentTime = 0;
+                    themeAudio.play();
+                    //TESTING
+
+                    soundOnButton.style.display = 'none';
+                    soundOffButton.style.display = 'block';
+                }, 26000);
+            });
             
         })
         // Handle any errors
@@ -122,6 +197,9 @@ function triviaGameMedium() {
     // "I like those odds audio"
     audio = new Audio('./static/sounds/the-mandalorian.mp3');
     audio.play();
+
+    // Disable the startGameMedium button
+    startGameMedium.disabled = true;
 
     setTimeout(function() {
         // Fetch the game data
@@ -145,15 +223,83 @@ function triviaGameMedium() {
             // Display the first question
             displayNextQuestion();
 
+            // Get the sound-control element
+            let soundControl = document.getElementById('sound-control');
+
+            // Insert HTML into the sound-control element
+            soundControl.innerHTML = `
+                <i class="fa-solid fa-volume-high icon-white sound-on"></i>
+                <i class="fa-solid fa-volume-xmark icon-white sound-off"></i>
+            `;
+
             // Create a new Audio object
             themeAudio = new Audio('./static/sounds/cantina-band.mp3');
-            themeAudio.play();
-            
+
+            // Store the interval ID
+            let intervalId;
+
             // Play the audio every 26 seconds
-            setInterval(function() {
+            intervalId = setInterval(function() {
                 themeAudio.currentTime = 0;
                 themeAudio.play();
+                //TESTING
+
+                soundOnButton.style.display = 'none';
+                soundOffButton.style.display = 'block';
             }, 26000); // 26000 milliseconds = 26 seconds
+
+            // Get the sound-off and sound-on buttons
+            let soundOffButton = document.querySelector('.sound-off');
+            let soundOnButton = document.querySelector('.sound-on');
+
+            // Hide the sound-off element initially
+            soundOffButton.style.display = 'none';
+
+            // Add event listener for the play event
+            themeAudio.addEventListener('play', function() {
+                // Hide the sound-on element and show the sound-off element
+                soundOnButton.style.display = 'none';
+                soundOffButton.style.display = 'block';
+            });
+
+            // Add event listener for the pause event
+            themeAudio.addEventListener('pause', function() {
+                // Hide the sound-off element and show the sound-on element
+                soundOffButton.style.display = 'none';
+                soundOnButton.style.display = 'block';
+            });
+
+            // Play the audio
+            themeAudio.play();
+
+            //TESTING
+
+            soundOnButton.style.display = 'none';
+            soundOffButton.style.display = 'block';
+
+            // Add event listener to the sound-off button
+            soundOffButton.addEventListener('click', function() {
+                // Pause the audio and clear the interval
+                themeAudio.pause();
+                //TESTING
+                soundOffButton.style.display = 'none';
+                soundOnButton.style.display = 'block';
+                clearInterval(intervalId);
+            });
+
+            // Add event listener to the sound-on button
+            soundOnButton.addEventListener('click', function() {
+                // Play the audio and set the interval
+                themeAudio.play();
+                intervalId = setInterval(function() {
+                    themeAudio.currentTime = 0;
+                    themeAudio.play();
+                    //TESTING
+
+                    soundOnButton.style.display = 'none';
+                    soundOffButton.style.display = 'block';
+                }, 26000);
+            });
             
         })
         // Handle any errors
@@ -167,6 +313,9 @@ function triviaGameHard() {
     // "I like those odds audio"
     audio = new Audio('./static/sounds/the-mandalorian.mp3');
     audio.play();
+
+    // Disable the startGameHard button
+    startGameHard.disabled = true;
 
     setTimeout(function() {
         // Fetch the game data
@@ -190,15 +339,78 @@ function triviaGameHard() {
             // Display the first question
             displayNextQuestion();
 
+            // Get the sound-control element
+            let soundControl = document.getElementById('sound-control');
+
+            // Insert HTML into the sound-control element
+            soundControl.innerHTML = `
+                <i class="fa-solid fa-volume-high icon-white sound-on"></i>
+                <i class="fa-solid fa-volume-xmark icon-white sound-off"></i>
+            `;
+
             // Create a new Audio object
             themeAudio = new Audio('./static/sounds/cantina-band.mp3');
-            themeAudio.play();
-            
+
+            // Store the interval ID
+            let intervalId;
+
             // Play the audio every 26 seconds
-            setInterval(function() {
+            intervalId = setInterval(function() {
                 themeAudio.currentTime = 0;
                 themeAudio.play();
+                //TESTING
+
+                soundOnButton.style.display = 'none';
+                soundOffButton.style.display = 'block';
             }, 26000); // 26000 milliseconds = 26 seconds
+
+            // Get the sound-off and sound-on buttons
+            let soundOffButton = document.querySelector('.sound-off');
+            let soundOnButton = document.querySelector('.sound-on');
+
+            // Hide the sound-off element initially
+            soundOffButton.style.display = 'none';
+
+            // Add event listener for the play event
+            themeAudio.addEventListener('play', function() {
+                // Hide the sound-on element and show the sound-off element
+                soundOnButton.style.display = 'none';
+                soundOffButton.style.display = 'block';
+            });
+
+            // Add event listener for the pause event
+            themeAudio.addEventListener('pause', function() {
+                // Hide the sound-off element and show the sound-on element
+                soundOffButton.style.display = 'none';
+                soundOnButton.style.display = 'block';
+            });
+
+            // Play the audio
+            themeAudio.play();
+
+            // Add event listener to the sound-off button
+            soundOffButton.addEventListener('click', function() {
+                // Pause the audio and clear the interval
+                themeAudio.pause();
+                //TESTING
+                soundOffButton.style.display = 'none';
+                soundOnButton.style.display = 'block';
+                clearInterval(intervalId);
+            });
+
+            // Add event listener to the sound-on button
+            soundOnButton.addEventListener('click', function() {
+                // Play the audio and set the interval
+                themeAudio.play();
+                intervalId = setInterval(function() {
+                    themeAudio.currentTime = 0;
+                    themeAudio.play();
+                    //TESTING
+
+                    soundOnButton.style.display = 'none';
+                    soundOffButton.style.display = 'block';
+                }, 26000);
+            });
             
         })
         // Handle any errors
@@ -229,8 +441,22 @@ function shuffleArray(array) {
     return array;
 }
 
+let questionCounter = 0;
+
 // Display the next question
 function displayNextQuestion() {
+    
+    // Increment the question counter
+    questionCounter++;
+
+    if (questionCounter === 5) {
+        // Get the next-question-modal-button button
+        let nextQuestionModalButton = document.getElementById('next-question-modal-button');
+
+        // Change the text of the button
+        nextQuestionModalButton.textContent = "See your results";
+    }
+
     startTimer();
 
     // Get the next item from the shuffled game data iterator
@@ -241,24 +467,38 @@ function displayNextQuestion() {
 
     // If there are no more questions, display a message
     if (nextItem.done) {
+        
         stopTimer();
         themeAudio.pause();
+        
         themeAudio.currentTime = 0;
-
-        if (answersCorrect >= 3) {
+    
+        let message;
+        let imageSrc;
+    
+        if (answersCorrect >= 3 && answersCorrect != 5) {
             audio = new Audio('./static/sounds/vader-force-strong.mp3');
             audio.play();
+            imageSrc = './static/images/success.jpg'; 
+        } else if (answersCorrect === 5) {
+            audio = new Audio('./static/sounds/thats-how-its-done-star-wars.mp3');
+            audio.play(); 
+        } else {
+            audio = new Audio('./static/sounds/arogent-and-i-apolgize.mp3');
+            audio.play();
+            imageSrc = './static/images/failure.png';
         }
-
+    
         document.getElementById('timer').textContent = null;
-        gameArea.innerHTML = `<h1>You scored ${answersCorrect} out of ${amountOfQuestions} </h1>
+        gameArea.innerHTML = `<h1>You scored ${answersCorrect} out of ${amountOfQuestions}</h1>
                               <h2>No more questions</h2>
-                              <div>
-                                  <button id="return-home" href="index.html" type="button" class="game-start" aria-label="button to return to home page">
+                              <img src="${imageSrc}" alt="result image" class="result-image">
+                              <div class='button-container'>
+                                  <button id="return-home" type="button" class="game-start" aria-label="button to return to home page">
                                       Return to Home
                                   </button>
-                              </div>`
-                              ;
+                              </div>`;
+    
         let returnHome = document.getElementById('return-home');
         returnHome.addEventListener('click', function() {
             audio = new Audio('./static/sounds/roger-roger-sound.mp3');
@@ -266,9 +506,8 @@ function displayNextQuestion() {
             setTimeout(function() {
                 window.location.href = 'index.html';
             }, 1900);
-            
         });
-
+    
         return;
     }
 
@@ -296,10 +535,6 @@ function generateQuestionHTML(nextItem, shuffledAnswers) {
     // Return the generated HTML
     return html;
 }
-
-// Get the modal
-let modal = document.getElementById('answerModal');
-let modalMessage = document.getElementById('modal-message');
 
 // Attach event listeners to the possible answers
 function attachAnswerListeners(shuffledAnswers, nextItem) {
